@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Collier Dore Fin">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f2e3d7"/>
+      <stop offset="100%" stop-color="#fff9f5"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <circle cx="162" cy="140" r="82" fill="#c19454" opacity=".14"/>
+  <ellipse cx="400" cy="520" rx="220" ry="24" fill="#ddc9bf" opacity=".3"/>
+  <path d="M244 220c0-74 312-74 312 0 0 62-156 140-156 140S244 282 244 220Z" fill="none" stroke="#c19454" stroke-width="8"/>
+  <path d="M374 330h52" stroke="#c19454" stroke-width="8" stroke-linecap="round"/>
+  <path d="M400 304v52" stroke="#c19454" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="400" cy="330" r="28" fill="none" stroke="#c19454" stroke-width="6"/>
+  <text x="400" y="92" text-anchor="middle" fill="#5d4b4d" font-family="Georgia, serif" font-size="46">Collier Dore Fin</text>
+</svg>

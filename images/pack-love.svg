@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Pack Love">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f7e7dd"/>
+      <stop offset="100%" stop-color="#fff8f4"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <circle cx="120" cy="120" r="88" fill="#d5a7af" opacity=".14"/>
+  <circle cx="680" cy="470" r="120" fill="#c6a06a" opacity=".12"/>
+  <ellipse cx="400" cy="520" rx="240" ry="26" fill="#dccabf" opacity=".26"/>
+  <path d="M258 224c0-74 284-74 284 0 0 80-142 156-142 156S258 304 258 224Z" fill="none" stroke="#c6975f" stroke-width="10"/>
+  <path d="M400 392c-44-48-96-52-126-18-24 28-18 74 24 104 26 20 60 28 102 58 42-30 76-38 102-58 42-30 48-76 24-104-30-34-82-30-126 18Z" fill="none" stroke="#cf8a97" stroke-width="10"/>
+  <circle cx="220" cy="318" r="40" fill="none" stroke="#cf8a97" stroke-width="10"/>
+  <text x="400" y="92" text-anchor="middle" fill="#5d4b4d" font-family="Georgia, serif" font-size="48">Pack Love</text>
+</svg>

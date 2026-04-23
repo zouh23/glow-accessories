@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Pack Chic">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#faeee7"/>
+      <stop offset="100%" stop-color="#fffaf8"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <circle cx="650" cy="130" r="92" fill="#cf9aa2" opacity=".13"/>
+  <circle cx="150" cy="460" r="110" fill="#c6a06a" opacity=".13"/>
+  <ellipse cx="400" cy="520" rx="240" ry="24" fill="#d8c7ba" opacity=".22"/>
+  <path d="M240 214c0-76 320-76 320 0 0 70-160 158-160 158S240 284 240 214Z" fill="none" stroke="#c09b63" stroke-width="10"/>
+  <circle cx="400" cy="384" r="22" fill="none" stroke="#cf9aa2" stroke-width="10"/>
+  <circle cx="270" cy="316" r="38" fill="none" stroke="#cf9aa2" stroke-width="10"/>
+  <circle cx="540" cy="316" r="38" fill="none" stroke="#c09b63" stroke-width="10"/>
+  <text x="400" y="92" text-anchor="middle" fill="#5d4b4d" font-family="Georgia, serif" font-size="48">Pack Chic</text>
+</svg>

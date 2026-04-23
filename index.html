@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Glow Accessories, boutique d'accessoires feminins chics et modernes : colliers, bracelets, bagues et packs elegants."
+    />
+    <title>Glow Accessories | Boutique d'accessoires feminins</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#accueil">Aller au contenu</a>
+
+    <header class="site-header" id="top">
+      <div class="container nav-wrapper">
+        <a class="brand" href="#accueil" aria-label="Glow Accessories - Retour a l'accueil">
+          <span class="brand-mark">Glow</span>
+          <span class="brand-text">Accessories</span>
+        </a>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Ouvrir le menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="site-nav" id="site-nav" aria-label="Navigation principale">
+          <a href="#categories">Categories</a>
+          <a href="#packs">Packs</a>
+          <a href="#produits">Produits</a>
+          <button class="nav-cart-button" id="nav-cart-button" type="button">
+            Panier <span class="nav-cart-count" id="nav-cart-count">0</span>
+          </button>
+          <a href="#apropos">A propos</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero section" id="accueil">
+        <div class="container">
+          <div class="hero-stage reveal">
+            <div class="hero-media" aria-hidden="true">
+              <img
+                src="images/stock/pack-chic.jpg"
+                alt=""
+                loading="eager"
+              />
+            </div>
+            <div class="hero-scrim"></div>
+            <div class="hero-content hero-content-centered">
+              <p class="eyebrow hero-eyebrow">Boutique d'accessoires feminins</p>
+              <h1>Glow Accessories</h1>
+              <p class="hero-text">
+                Des accessoires elegants pour sublimer votre style avec douceur,
+                eclat et modernite.
+              </p>
+              <div class="hero-actions">
+                <a class="button button-primary" href="#produits">Voir les produits</a>
+                <a
+                  class="button button-secondary"
+                  href="https://wa.me/212663129270?text=Bonjour%20Glow%20Accessories%2C%20je%20souhaite%20commander."
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Commander sur WhatsApp
+                </a>
+                <a
+                  class="button button-light"
+                  href="https://www.instagram.com/glow_accessories04?igsh=ZTlhenowb2Vnc3R5&utm_source=qr"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Voir Instagram
+                </a>
+              </div>
+              <div class="hero-signature">
+                <span>Pieces raffinees</span>
+                <span>Looks delicats</span>
+                <span>Commande rapide</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section categories" id="categories">
+        <div class="container">
+          <div class="categories-head">
+            <div class="section-heading reveal">
+              <p class="eyebrow">Categories</p>
+              <h2>Trois univers chic pour trouver la piece qui fait la difference</h2>
+              <p>
+                Explorez nos collections pensees pour attirer le regard, completer une tenue
+                et donner tout de suite envie de commander.
+              </p>
+            </div>
+
+            <div class="categories-note reveal">
+              <p class="categories-note-title">Selection Glow</p>
+              <p>
+                Des pieces fines, lumineuses et faciles a porter. Cliquez sur une categorie
+                pour afficher directement les produits correspondants.
+              </p>
+            </div>
+          </div>
+
+          <div class="category-grid">
+            <article class="category-card reveal">
+              <div class="category-media">
+                <img
+                  src="images/stock/collier-pearl-model.jpg"
+                  alt="Colliers elegants Glow Accessories"
+                  loading="lazy"
+                />
+              </div>
+              <div class="category-body">
+                <div class="category-topline">
+                  <div class="category-icon" aria-hidden="true">C</div>
+                  <span class="category-tag">Delicats & lumineux</span>
+                </div>
+                <h3>Colliers</h3>
+                <p>Des lignes fines et lumineuses pour encadrer le visage avec subtilite.</p>
+                <ul class="category-points">
+                  <li>Faciles a porter au quotidien</li>
+                  <li>Parfaits seuls ou en accumulation</li>
+                </ul>
+                <button class="button button-secondary category-link" type="button" data-filter-target="Colliers">
+                  Voir les colliers
+                </button>
+              </div>
+            </article>
+            <article class="category-card reveal">
+              <div class="category-media">
+                <img
+                  src="images/stock/bracelet-gold.jpg"
+                  alt="Bracelets elegants Glow Accessories"
+                  loading="lazy"
+                />
+              </div>
+              <div class="category-body">
+                <div class="category-topline">
+                  <div class="category-icon" aria-hidden="true">B</div>
+                  <span class="category-tag">Fins & feminins</span>
+                </div>
+                <h3>Bracelets</h3>
+                <p>Des details delicats qui apportent une touche chic a chaque mouvement.</p>
+                <ul class="category-points">
+                  <li>Des pieces douces et modernes</li>
+                  <li>Ideales pour offrir ou assortir</li>
+                </ul>
+                <button class="button button-secondary category-link" type="button" data-filter-target="Bracelets">
+                  Voir les bracelets
+                </button>
+              </div>
+            </article>
+            <article class="category-card reveal">
+              <div class="category-media">
+                <img
+                  src="images/stock/ring-closeup.jpg"
+                  alt="Bagues elegantes Glow Accessories"
+                  loading="lazy"
+                />
+              </div>
+              <div class="category-body">
+                <div class="category-topline">
+                  <div class="category-icon" aria-hidden="true">R</div>
+                  <span class="category-tag">Modernes & chic</span>
+                </div>
+                <h3>Bagues</h3>
+                <p>Des bagues modernes et feminines pour une allure raffinee au quotidien.</p>
+                <ul class="category-points">
+                  <li>Une touche forte sans effort</li>
+                  <li>Des modeles faciles a mixer</li>
+                </ul>
+                <button class="button button-secondary category-link" type="button" data-filter-target="Bagues">
+                  Voir les bagues
+                </button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section packs" id="packs">
+        <div class="container">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Nos Packs</p>
+            <h2>Des ensembles harmonieux, prets a faire plaisir</h2>
+            <p>
+              Des idees simples et chic pour offrir ou se faire plaisir avec une selection deja composee.
+            </p>
+          </div>
+
+          <div class="card-grid" id="packs-grid" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="section products" id="produits">
+        <div class="container">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Produits</p>
+            <h2>Une selection pensee pour plaire au premier regard</h2>
+            <p>
+              Explorez nos modeles et filtrez facilement selon la categorie qui vous interesse.
+            </p>
+          </div>
+
+          <div class="filters reveal" role="group" aria-label="Filtrer les produits">
+            <button class="filter-button active" type="button" data-filter="Tous">Tous</button>
+            <button class="filter-button" type="button" data-filter="Colliers">Colliers</button>
+            <button class="filter-button" type="button" data-filter="Bracelets">Bracelets</button>
+            <button class="filter-button" type="button" data-filter="Bagues">Bagues</button>
+          </div>
+
+          <div class="card-grid products-grid" id="products-grid" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="section about" id="apropos">
+        <div class="container about-grid">
+          <div class="about-card reveal">
+            <p class="eyebrow">A propos</p>
+            <h2>Une boutique douce, actuelle et facile a adopter</h2>
+            <p>
+              Glow Accessories propose des accessoires feminins simples, elegants et tendance
+              pour completer chaque tenue avec style. Notre selection mise sur des details fins,
+              faciles a porter, pour vous accompagner au quotidien comme dans vos moments speciaux.
+            </p>
+          </div>
+          <div class="about-note reveal">
+            <p class="note-title">Pourquoi Glow Accessories ?</p>
+            <ul>
+              <li>Des pieces visuellement chic et faciles a assortir</li>
+              <li>Des packs prets a commander en quelques clics</li>
+              <li>Une commande simple et directe sur WhatsApp</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section contact" id="contact">
+        <div class="container contact-card reveal">
+          <div>
+            <p class="eyebrow">WhatsApp</p>
+            <h2>Commandez facilement et recevez une reponse rapide</h2>
+            <p>
+              Ecrivez-nous directement sur WhatsApp pour demander un modele, verifier la
+              disponibilite ou passer commande en quelques instants.
+            </p>
+          </div>
+          <div class="contact-actions">
+            <a
+              class="button button-primary"
+              href="https://wa.me/212663129270?text=Bonjour%20Glow%20Accessories%2C%20je%20souhaite%20commander."
+              target="_blank"
+              rel="noreferrer"
+            >
+              Ouvrir WhatsApp
+            </a>
+            <a
+              class="button button-ghost"
+              href="https://www.instagram.com/glow_accessories04?igsh=ZTlhenowb2Vnc3R5&utm_source=qr"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Voir Instagram
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-content">
+        <div>
+          <p class="footer-brand">Glow Accessories</p>
+          <p class="footer-copy">© 2026 Glow Accessories - Tous droits reserves</p>
+        </div>
+        <div class="footer-links">
+          <a
+            class="footer-link"
+            href="https://wa.me/212663129270?text=Bonjour%20Glow%20Accessories%2C%20je%20souhaite%20commander."
+            target="_blank"
+            rel="noreferrer"
+          >
+            WhatsApp
+          </a>
+          <a
+            class="footer-link"
+            href="https://www.instagram.com/glow_accessories04?igsh=ZTlhenowb2Vnc3R5&utm_source=qr"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Instagram
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="floating-social-group" aria-label="Contacts rapides">
+      <a
+        class="floating-social"
+        href="https://wa.me/212663129270?text=Bonjour%20Glow%20Accessories%2C%20je%20souhaite%20commander."
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Commander sur WhatsApp"
+        title="Commander sur WhatsApp"
+      >
+        <span>WhatsApp</span>
+      </a>
+      <a
+        class="floating-social floating-social-alt"
+        href="https://www.instagram.com/glow_accessories04?igsh=ZTlhenowb2Vnc3R5&utm_source=qr"
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Voir Instagram"
+        title="Voir Instagram"
+      >
+        <span>Instagram</span>
+      </a>
+    </div>
+
+    <div class="cart-overlay" id="cart-overlay" hidden></div>
+    <aside class="cart-drawer" id="cart-drawer" aria-hidden="true" aria-labelledby="cart-drawer-title">
+      <div class="cart-drawer-head">
+        <div>
+          <p class="eyebrow">Panier</p>
+          <h2 id="cart-drawer-title">Vos selections</h2>
+        </div>
+        <button class="cart-close" id="cart-close" type="button" aria-label="Fermer le panier">
+          &times;
+        </button>
+      </div>
+
+      <div class="cart-panel">
+        <div class="cart-panel-head">
+          <h3>Mon panier</h3>
+          <span class="cart-badge" id="cart-count">0 article</span>
+        </div>
+        <div class="cart-list" id="cart-list" aria-live="polite"></div>
+        <p class="cart-empty" id="cart-empty">
+          Votre panier est vide pour le moment. Ajoutez un produit pour preparer votre commande.
+        </p>
+      </div>
+
+      <aside class="cart-summary">
+        <p class="summary-label">Resume</p>
+        <div class="summary-row">
+          <span>Articles</span>
+          <strong id="cart-items-total">0</strong>
+        </div>
+        <div class="summary-row total">
+          <span>Total estime</span>
+          <strong id="cart-total">0 DH</strong>
+        </div>
+        <a
+          class="button button-primary cart-checkout disabled"
+          id="cart-checkout"
+          href="#"
+          aria-disabled="true"
+        >
+          Commander le panier sur WhatsApp
+        </a>
+        <button class="button button-ghost cart-clear" id="cart-clear" type="button">
+          Vider le panier
+        </button>
+      </aside>
+    </aside>
+
+    <script src="script.js"></script>
+  </body>
+</html>

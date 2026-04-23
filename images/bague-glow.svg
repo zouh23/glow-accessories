@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Bague Glow">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f6dce4"/>
+      <stop offset="100%" stop-color="#fffaf8"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <circle cx="650" cy="120" r="92" fill="#c69d5f" opacity=".14"/>
+  <ellipse cx="400" cy="520" rx="190" ry="24" fill="#ddc9bf" opacity=".28"/>
+  <circle cx="400" cy="320" r="84" fill="none" stroke="#c69d5f" stroke-width="16"/>
+  <circle cx="400" cy="254" r="22" fill="#fff9f4" stroke="#c69d5f" stroke-width="7"/>
+  <path d="M400 216v16M400 276v16M362 254h16M422 254h16M374 228l10 10M426 228l-10 10M374 280l10-10M426 280l-10-10" stroke="#cf8a97" stroke-width="5" stroke-linecap="round"/>
+  <text x="400" y="92" text-anchor="middle" fill="#5d4b4d" font-family="Georgia, serif" font-size="46">Bague Glow</text>
+</svg>

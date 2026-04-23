@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Collier Luna">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8e6ea"/>
+      <stop offset="100%" stop-color="#fffaf8"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <circle cx="640" cy="110" r="94" fill="#c38f97" opacity=".16"/>
+  <ellipse cx="400" cy="520" rx="220" ry="24" fill="#ddc9bf" opacity=".3"/>
+  <path d="M238 214c0-84 324-84 324 0 0 72-162 154-162 154S238 286 238 214Z" fill="none" stroke="#c38f97" stroke-width="9"/>
+  <path d="M421 308a42 42 0 1 0 0 84a32 42 0 1 1 0-84Z" fill="none" stroke="#c38f97" stroke-width="8"/>
+  <circle cx="452" cy="336" r="6" fill="#c38f97"/>
+  <text x="400" y="92" text-anchor="middle" fill="#5d4b4d" font-family="Georgia, serif" font-size="46">Collier Luna</text>
+</svg>

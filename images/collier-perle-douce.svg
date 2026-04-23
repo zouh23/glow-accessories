@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Collier Perle Douce">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f6dfe4"/>
+      <stop offset="100%" stop-color="#fffaf8"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <circle cx="650" cy="120" r="90" fill="#caa46a" opacity=".14"/>
+  <ellipse cx="400" cy="520" rx="220" ry="24" fill="#ddc9bf" opacity=".3"/>
+  <path d="M238 214c0-84 324-84 324 0 0 72-162 154-162 154S238 286 238 214Z" fill="none" stroke="#caa46a" stroke-width="9"/>
+  <circle cx="400" cy="372" r="22" fill="#fff8f6" stroke="#caa46a" stroke-width="6"/>
+  <circle cx="360" cy="255" r="10" fill="#fff8f6" stroke="#caa46a" stroke-width="4"/>
+  <circle cx="400" cy="248" r="10" fill="#fff8f6" stroke="#caa46a" stroke-width="4"/>
+  <circle cx="440" cy="255" r="10" fill="#fff8f6" stroke="#caa46a" stroke-width="4"/>
+  <text x="400" y="92" text-anchor="middle" fill="#5d4b4d" font-family="Georgia, serif" font-size="46">Collier Perle Douce</text>
+</svg>
