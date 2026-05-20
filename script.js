@@ -1,11 +1,3 @@
-const whatsappUrl = "https://wa.me/212663129270";
-const instagramUrl =
-  "https://www.instagram.com/glow_accessories04?igsh=ZTlhenowb2Vnc3R5&utm_source=qr";
-
-function buildWhatsAppUrl(message) {
-  return `${whatsappUrl}?text=${encodeURIComponent(message)}`;
-}
-
 const packs = [
   {
     id: "pack-elegance",
@@ -145,6 +137,15 @@ const cartTotal = document.querySelector("#cart-total");
 const cartCheckout = document.querySelector("#cart-checkout");
 const cartClear = document.querySelector("#cart-clear");
 
+const checkoutOverlay = document.querySelector("#checkout-overlay");
+const checkoutModal = document.querySelector("#checkout-modal");
+const checkoutClose = document.querySelector("#checkout-close");
+const checkoutForm = document.querySelector("#checkout-form");
+const checkoutFullname = document.querySelector("#checkout-fullname");
+const checkoutPhone = document.querySelector("#checkout-phone");
+const checkoutCity = document.querySelector("#checkout-city");
+const checkoutStatus = document.querySelector("#checkout-status");
+
 let cart = loadCart();
 let revealObserver;
 
@@ -260,27 +261,177 @@ function clearCart() {
   renderCart();
 }
 
-function buildCartMessage() {
-  const lines = [
-    "Bonjour Glow Accessories, je souhaite commander les articles suivants :",
-    ""
-  ];
+function normalizeField(value) {
+  return String(value || "")
+    .trim()
+    .replace(/\s+/g, " ");
+}
 
+function getOrderEndpoint() {
+  const meta = document.querySelector('meta[name="order-endpoint"]');
+  if (!meta) {
+    return "";
+  }
+
+  return normalizeField(meta.getAttribute("content"));
+}
+
+function loadCheckoutInfo() {
+  try {
+    const raw = window.localStorage.getItem("glow-checkout");
+    const parsed = raw ? JSON.parse(raw) : null;
+    if (!parsed || typeof parsed !== "object") {
+      return { fullname: "", phone: "", city: "" };
+    }
+
+    return {
+      fullname: normalizeField(parsed.fullname),
+      phone: normalizeField(parsed.phone),
+      city: normalizeField(parsed.city)
+    };
+  } catch (error) {
+    return { fullname: "", phone: "", city: "" };
+  }
+}
+
+function saveCheckoutInfo(info) {
+  window.localStorage.setItem("glow-checkout", JSON.stringify(info));
+}
+
+function getCartDetails() {
   let total = 0;
+  const lines = [];
+  const items = [];
 
   cart.forEach((item) => {
     const catalogItem = catalogById.get(item.id);
-    const lineTotal = parsePrice(catalogItem.price) * item.quantity;
+    const unitPrice = parsePrice(catalogItem.price);
+    const lineTotal = unitPrice * item.quantity;
     total += lineTotal;
+
     lines.push(
       `- ${catalogItem.name} x${item.quantity} (${catalogItem.price}) = ${formatPrice(lineTotal)}`
     );
+
+    items.push({
+      id: catalogItem.id,
+      name: catalogItem.name,
+      category: catalogItem.category,
+      quantity: item.quantity,
+      unit_price_label: catalogItem.price,
+      unit_price_dh: unitPrice,
+      line_total_dh: lineTotal
+    });
   });
 
-  lines.push("");
-  lines.push(`Total estime : ${formatPrice(total)}`);
+  return { lines, total, items };
+}
+
+function buildOrderMessage(info) {
+  const cartDetails = getCartDetails();
+
+  const lines = [
+    "Bonjour Glow Accessories, je souhaite commander :",
+    "",
+    "Informations client :",
+    `Nom complet : ${info.fullname}`,
+    `Telephone : ${info.phone}`,
+    `Ville : ${info.city}`,
+    "",
+    "Panier :",
+    ...cartDetails.lines,
+    "",
+    `Total estime : ${formatPrice(cartDetails.total)}`
+  ];
 
   return lines.join("\n");
+}
+
+function setCheckoutStatus(message, type = "") {
+  if (!checkoutStatus) {
+    return;
+  }
+
+  checkoutStatus.textContent = message || "";
+  checkoutStatus.classList.toggle("is-error", type === "error");
+  checkoutStatus.classList.toggle("is-success", type === "success");
+}
+
+async function submitOrder(info) {
+  const endpoint = getOrderEndpoint();
+
+  if (!endpoint) {
+    throw new Error(
+      "Endpoint manquant. Ajoutez votre URL Google Sheets dans la balise meta order-endpoint."
+    );
+  }
+
+  const cartDetails = getCartDetails();
+  const payload = {
+    created_at: new Date().toISOString(),
+    fullname: info.fullname,
+    phone: info.phone,
+    city: info.city,
+    total_dh: cartDetails.total,
+    items: cartDetails.items,
+    message: buildOrderMessage(info),
+    page_url: window.location.href,
+    user_agent: window.navigator.userAgent
+  };
+
+  const body = JSON.stringify(payload);
+
+  if ("sendBeacon" in navigator) {
+    const ok = navigator.sendBeacon(endpoint, body);
+    if (!ok) {
+      throw new Error("Envoi bloque par le navigateur.");
+    }
+    return true;
+  }
+
+  const response = await fetch(endpoint, {
+    method: "POST",
+    mode: "no-cors",
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8"
+    },
+    body
+  });
+
+  return response;
+}
+
+function openCheckout() {
+  if (!checkoutOverlay || !checkoutModal) {
+    return;
+  }
+
+  setCheckoutStatus("");
+  const saved = loadCheckoutInfo();
+  checkoutFullname.value = saved.fullname;
+  checkoutPhone.value = saved.phone;
+  checkoutCity.value = saved.city;
+
+  document.body.classList.add("checkout-open");
+  checkoutOverlay.hidden = false;
+  checkoutModal.hidden = false;
+
+  window.setTimeout(() => {
+    if (checkoutFullname) {
+      checkoutFullname.focus();
+    }
+  }, 0);
+}
+
+function closeCheckout() {
+  if (!checkoutOverlay || !checkoutModal) {
+    return;
+  }
+
+  document.body.classList.remove("checkout-open");
+  checkoutModal.hidden = true;
+  checkoutOverlay.hidden = true;
+  setCheckoutStatus("");
 }
 
 function renderCart() {
@@ -335,7 +486,7 @@ function renderCart() {
     cartCheckout.setAttribute("aria-disabled", "true");
     cartCheckout.classList.add("disabled");
   } else {
-    cartCheckout.setAttribute("href", buildWhatsAppUrl(buildCartMessage()));
+    cartCheckout.setAttribute("href", "#");
     cartCheckout.setAttribute("aria-disabled", "false");
     cartCheckout.classList.remove("disabled");
   }
@@ -498,6 +649,16 @@ function initCartEvents() {
   });
 
   cartClear.addEventListener("click", clearCart);
+
+  cartCheckout.addEventListener("click", (event) => {
+    if (cart.length === 0) {
+      event.preventDefault();
+      return;
+    }
+
+    event.preventDefault();
+    openCheckout();
+  });
 }
 
 function initCartDrawer() {
@@ -514,7 +675,69 @@ function initCartDrawer() {
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
-      closeCart();
+      if (document.body.classList.contains("checkout-open")) {
+        closeCheckout();
+      } else {
+        closeCart();
+      }
+    }
+  });
+}
+
+function initCheckoutForm() {
+  if (!checkoutOverlay || !checkoutModal || !checkoutForm) {
+    return;
+  }
+
+  if (checkoutClose) {
+    checkoutClose.addEventListener("click", closeCheckout);
+  }
+  checkoutOverlay.addEventListener("click", closeCheckout);
+
+  checkoutForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    setCheckoutStatus("");
+
+    if (cart.length === 0) {
+      closeCheckout();
+      return;
+    }
+
+    if (!checkoutForm.reportValidity()) {
+      return;
+    }
+
+    const info = {
+      fullname: normalizeField(checkoutFullname.value),
+      phone: normalizeField(checkoutPhone.value),
+      city: normalizeField(checkoutCity.value)
+    };
+
+    saveCheckoutInfo(info);
+
+    const submitButton = checkoutForm.querySelector('button[type="submit"]');
+    if (submitButton) {
+      submitButton.disabled = true;
+    }
+
+    try {
+      setCheckoutStatus("Envoi de la commande...", "");
+      await submitOrder(info);
+      setCheckoutStatus("Commande envoyee. Merci !", "success");
+      clearCart();
+      window.setTimeout(() => {
+        closeCheckout();
+        closeCart();
+      }, 900);
+    } catch (error) {
+      setCheckoutStatus(
+        `Impossible d'envoyer la commande. ${error && error.message ? error.message : ""}`.trim(),
+        "error"
+      );
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+      }
     }
   });
 }
@@ -571,5 +794,6 @@ initFilters();
 initMenu();
 initCartEvents();
 initCartDrawer();
+initCheckoutForm();
 initSlowMotion();
 initReveal();

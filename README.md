@@ -2,8 +2,8 @@
 
 Site vitrine statique, simple et elegant, pour une boutique d'accessoires feminins. Le projet utilise uniquement `HTML`, `CSS` et `JavaScript`, donc il est compatible avec un hebergement gratuit sur GitHub Pages.
 
-La commande se fait directement sur WhatsApp via le numero `+212663129270`.
-Instagram reste aussi disponible pour voir la boutique et les nouveautes.
+La commande se fait via un formulaire, puis elle est envoyee automatiquement dans une feuille **Google Sheets** (sans redirection WhatsApp).
+Instagram et WhatsApp peuvent rester disponibles pour contact rapide.
 
 ## Fichiers du projet
 
@@ -66,29 +66,90 @@ Tu peux changer :
 
 ## Changer les liens WhatsApp et Instagram
 
-Le lien WhatsApp principal est centralise dans `script.js` :
+Les liens WhatsApp et Instagram sont presents directement dans `index.html` pour :
 
-```js
-const whatsappUrl = "https://wa.me/212663129270";
-```
-
-Il est aussi present directement dans `index.html` pour :
-
-- le bouton du hero
 - la section contact
 - le footer
-- le bouton flottant WhatsApp
+- le bouton flottant WhatsApp / Instagram
 
-Si tu changes de numero WhatsApp, remplace ce lien partout dans `index.html` et dans `script.js`.
+Si tu changes de numero WhatsApp ou ton Instagram, remplace ces liens dans `index.html`.
 
-Le lien Instagram est defini dans `script.js` :
+## Recevoir les commandes automatiquement (Google Sheets)
+
+Le bouton **Commander** du panier envoie la commande (nom, telephone, ville + panier) vers une URL (endpoint) configuree dans `index.html`.
+
+### 1) Creer le Google Sheet
+
+1. Cree une feuille Google Sheets (ex: `Glow - Commandes`).
+2. Menu **Extensions** → **Apps Script**.
+3. Colle ce code, puis enregistre :
 
 ```js
-const instagramUrl =
-  "https://www.instagram.com/glow_accessories04?igsh=ZTlhenowb2Vnc3R5&utm_source=qr";
+const SHEET_NAME = "Commandes";
+
+function ensureHeader(sheet) {
+  if (sheet.getLastRow() > 0) return;
+  sheet.appendRow([
+    "created_at",
+    "fullname",
+    "phone",
+    "city",
+    "total_dh",
+    "items",
+    "items_json",
+    "page_url",
+    "user_agent"
+  ]);
+}
+
+function doPost(e) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
+  ensureHeader(sheet);
+
+  const raw = e && e.postData && e.postData.contents ? e.postData.contents : "";
+  const data = raw ? JSON.parse(raw) : {};
+
+  const items = Array.isArray(data.items) ? data.items : [];
+  const itemsText = items
+    .map((item) => {
+      const name = item && item.name ? item.name : item && item.id ? item.id : "article";
+      const qty = item && item.quantity ? ` x${item.quantity}` : "";
+      const price = item && item.unit_price_label ? ` (${item.unit_price_label})` : "";
+      return `${name}${qty}${price}`;
+    })
+    .join(" | ");
+
+  sheet.appendRow([
+    data.created_at || new Date().toISOString(),
+    data.fullname || "",
+    data.phone || "",
+    data.city || "",
+    data.total_dh || "",
+    itemsText,
+    JSON.stringify(data.items || []),
+    data.page_url || "",
+    data.user_agent || ""
+  ]);
+
+  return ContentService.createTextOutput("ok");
+}
 ```
 
-Et il est aussi utilise dans `index.html` pour les boutons visibles du site.
+### 2) Deployer l'endpoint
+
+1. Bouton **Deployer** → **Nouveau deploiement** → **Application web**.
+2. **Executer en tant que** : toi
+3. **Qui a acces** : **Tout le monde**
+4. Copie l'URL qui finit par `/exec`.
+
+### 3) Mettre l'URL dans le site
+
+Dans `index.html`, colle ton URL dans :
+
+```html
+<meta name="order-endpoint" content="COLLE_ICI_TON_URL_APPS_SCRIPT_EXEC" />
+```
 
 ## Remplacer les images d'exemple
 

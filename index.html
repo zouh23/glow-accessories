@@ -7,6 +7,10 @@
       name="description"
       content="Glow Accessories, boutique d'accessoires feminins chics et modernes : colliers, bracelets, bagues et packs elegants."
     />
+    <meta
+      name="order-endpoint"
+      content="https://script.google.com/macros/s/AKfycbyhqWpF-Sfap00JP1vIuvII7HJhOiMSoN2KMXv1prYoi_qVPo8Yaz_e4YzNDSpr65M/exec"
+    />
     <title>Glow Accessories | Boutique d'accessoires feminins</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -72,14 +76,6 @@
               </p>
               <div class="hero-actions">
                 <a class="button button-primary" href="#produits">Voir les produits</a>
-                <a
-                  class="button button-secondary"
-                  href="https://wa.me/212663129270?text=Bonjour%20Glow%20Accessories%2C%20je%20souhaite%20commander."
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Commander sur WhatsApp
-                </a>
                 <a
                   class="button button-light"
                   href="https://www.instagram.com/glow_accessories04?igsh=ZTlhenowb2Vnc3R5&utm_source=qr"
@@ -248,7 +244,7 @@
             <ul>
               <li>Des pieces visuellement chic et faciles a assortir</li>
               <li>Des packs prets a commander en quelques clics</li>
-              <li>Une commande simple et directe sur WhatsApp</li>
+              <li>Une commande rapide via le panier (formulaire)</li>
             </ul>
           </div>
         </div>
@@ -257,21 +253,21 @@
       <section class="section contact" id="contact">
         <div class="container contact-card reveal">
           <div>
-            <p class="eyebrow">WhatsApp</p>
-            <h2>Commandez facilement et recevez une reponse rapide</h2>
+            <p class="eyebrow">Contact</p>
+            <h2>Une question ? Ecrivez-nous sur WhatsApp</h2>
             <p>
-              Ecrivez-nous directement sur WhatsApp pour demander un modele, verifier la
-              disponibilite ou passer commande en quelques instants.
+              Contactez-nous sur WhatsApp pour demander un modele, verifier la disponibilite
+              ou poser une question.
             </p>
           </div>
           <div class="contact-actions">
             <a
               class="button button-primary"
-              href="https://wa.me/212663129270?text=Bonjour%20Glow%20Accessories%2C%20je%20souhaite%20commander."
+              href="https://wa.me/212663129270?text=Bonjour%20Glow%20Accessories%2C%20j%27ai%20une%20question."
               target="_blank"
               rel="noreferrer"
             >
-              Ouvrir WhatsApp
+              Contacter sur WhatsApp
             </a>
             <a
               class="button button-ghost"
@@ -295,7 +291,7 @@
         <div class="footer-links">
           <a
             class="footer-link"
-            href="https://wa.me/212663129270?text=Bonjour%20Glow%20Accessories%2C%20je%20souhaite%20commander."
+            href="https://wa.me/212663129270?text=Bonjour%20Glow%20Accessories%2C%20j%27ai%20une%20question."
             target="_blank"
             rel="noreferrer"
           >
@@ -316,11 +312,11 @@
     <div class="floating-social-group" aria-label="Contacts rapides">
       <a
         class="floating-social"
-        href="https://wa.me/212663129270?text=Bonjour%20Glow%20Accessories%2C%20je%20souhaite%20commander."
+        href="https://wa.me/212663129270?text=Bonjour%20Glow%20Accessories%2C%20j%27ai%20une%20question."
         target="_blank"
         rel="noreferrer"
-        aria-label="Commander sur WhatsApp"
-        title="Commander sur WhatsApp"
+        aria-label="Contacter sur WhatsApp"
+        title="Contacter sur WhatsApp"
       >
         <span>WhatsApp</span>
       </a>
@@ -375,13 +371,84 @@
           href="#"
           aria-disabled="true"
         >
-          Commander le panier sur WhatsApp
+          Commander
         </a>
         <button class="button button-ghost cart-clear" id="cart-clear" type="button">
           Vider le panier
         </button>
       </aside>
     </aside>
+
+    <div class="checkout-overlay" id="checkout-overlay" hidden></div>
+    <div
+      class="checkout-modal"
+      id="checkout-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="checkout-title"
+      hidden
+    >
+      <div class="checkout-modal-panel">
+        <div class="checkout-modal-head">
+          <div>
+            <p class="eyebrow">Livraison</p>
+            <h2 id="checkout-title">Informations de commande</h2>
+            <p class="checkout-subtitle">
+              Remplissez ces champs pour envoyer votre commande.
+            </p>
+          </div>
+          <button class="checkout-close" id="checkout-close" type="button" aria-label="Fermer le formulaire">
+            &times;
+          </button>
+        </div>
+
+        <form class="checkout-form" id="checkout-form" novalidate>
+          <label class="checkout-field">
+            <span>Nom complet</span>
+            <input
+              id="checkout-fullname"
+              name="fullname"
+              type="text"
+              autocomplete="name"
+              required
+            />
+          </label>
+
+          <label class="checkout-field">
+            <span>Numero WhatsApp / Telephone</span>
+            <input
+              id="checkout-phone"
+              name="phone"
+              type="tel"
+              autocomplete="tel"
+              inputmode="tel"
+              required
+            />
+          </label>
+
+          <label class="checkout-field">
+            <span>Ville</span>
+            <input
+              id="checkout-city"
+              name="city"
+              type="text"
+              autocomplete="address-level2"
+              required
+            />
+          </label>
+
+          <p class="checkout-note">
+            Une fois valide, votre commande est envoyee directement a Glow Accessories.
+          </p>
+
+          <p class="checkout-status" id="checkout-status" role="status" aria-live="polite"></p>
+
+          <div class="checkout-actions">
+            <button class="button button-primary" type="submit">Confirmer la commande</button>
+          </div>
+        </form>
+      </div>
+    </div>
 
     <script src="script.js"></script>
   </body>
