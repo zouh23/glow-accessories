@@ -715,6 +715,16 @@ body.is-loaded .hero-content > *:nth-child(5) {
 
 .cart-panel {
   padding: 1.5rem;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 1rem;
+  min-height: 0;
+}
+
+.cart-scroll {
+  min-height: 0;
+  overflow: auto;
+  padding-right: 0.35rem;
 }
 
 .cart-summary {

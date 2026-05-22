@@ -235,7 +235,6 @@ function addToCart(itemId) {
 
   saveCart();
   renderCart();
-  openCart();
 }
 
 function updateCartItem(itemId, delta) {
