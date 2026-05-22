@@ -556,6 +556,10 @@ body.is-loaded .hero-content > *:nth-child(5) {
   font-size: 1.2rem;
 }
 
+.product-card h3 {
+  font-weight: 800;
+}
+
 .category-icon {
   width: 56px;
   height: 56px;
